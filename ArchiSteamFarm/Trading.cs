@@ -176,7 +176,41 @@ namespace ArchiSteamFarm {
 				return null;
 			}
 
-			ParseTradeResult result = await ShouldAcceptTrade(tradeOffer).ConfigureAwait(false);
+
+            // Log trade to console
+
+            ASF.ArchiLogger.LogGenericInfo("Parsing Trade:");
+            ASF.ArchiLogger.LogGenericInfo($"  IsFairTypesEx:\t {tradeOffer.IsFairTypesExchange()}");
+            ASF.ArchiLogger.LogGenericInfo($"  ItemsToGive:\t {tradeOffer.ItemsToGive.Count}");
+
+            foreach (Steam.Asset asset in tradeOffer.ItemsToGive) {
+                ASF.ArchiLogger.LogGenericInfo($"    AssetID:\t {asset.AssetID}");
+                ASF.ArchiLogger.LogGenericInfo($"      Amount:\t {asset.Amount}");
+                ASF.ArchiLogger.LogGenericInfo($"      ClassID:\t {asset.ClassID}");
+                ASF.ArchiLogger.LogGenericInfo($"      AppID:\t {asset.AppID}");
+            }
+            ASF.ArchiLogger.LogGenericInfo($"  ItemsToGive: {tradeOffer.ItemsToGive.Count}");
+
+            foreach (Steam.Asset asset in tradeOffer.ItemsToGive) {
+                ASF.ArchiLogger.LogGenericInfo($"    AssetID:\t {asset.AssetID}");
+                ASF.ArchiLogger.LogGenericInfo($"      Amount:\t {asset.Amount}");
+                ASF.ArchiLogger.LogGenericInfo($"      ClassID:\t {asset.ClassID}");
+                ASF.ArchiLogger.LogGenericInfo($"      AppID:\t {asset.AppID}");
+            }
+
+            ASF.ArchiLogger.LogGenericInfo($"  ItemsToReceive: {tradeOffer.ItemsToGive.Count}");
+
+            foreach (Steam.Asset asset in tradeOffer.ItemsToReceive)
+            {
+                ASF.ArchiLogger.LogGenericInfo($"    AssetID:\t {asset.AssetID}");
+                ASF.ArchiLogger.LogGenericInfo($"      Amount:\t {asset.Amount}");
+                ASF.ArchiLogger.LogGenericInfo($"      ClassID:\t {asset.ClassID}");
+                ASF.ArchiLogger.LogGenericInfo($"      AppID:\t {asset.AppID}");
+            }
+
+
+
+            ParseTradeResult result = await ShouldAcceptTrade(tradeOffer).ConfigureAwait(false);
 			if (result == null) {
 				Bot.ArchiLogger.LogNullError(nameof(result));
 				return null;
