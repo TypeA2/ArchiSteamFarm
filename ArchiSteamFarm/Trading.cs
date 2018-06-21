@@ -189,14 +189,6 @@ namespace ArchiSteamFarm {
                 ASF.ArchiLogger.LogGenericInfo($"      ClassID:\t {asset.ClassID}");
                 ASF.ArchiLogger.LogGenericInfo($"      AppID:\t {asset.AppID}");
             }
-            ASF.ArchiLogger.LogGenericInfo($"  ItemsToGive: {tradeOffer.ItemsToGive.Count}");
-
-            foreach (Steam.Asset asset in tradeOffer.ItemsToGive) {
-                ASF.ArchiLogger.LogGenericInfo($"    AssetID:\t {asset.AssetID}");
-                ASF.ArchiLogger.LogGenericInfo($"      Amount:\t {asset.Amount}");
-                ASF.ArchiLogger.LogGenericInfo($"      ClassID:\t {asset.ClassID}");
-                ASF.ArchiLogger.LogGenericInfo($"      AppID:\t {asset.AppID}");
-            }
 
             ASF.ArchiLogger.LogGenericInfo($"  ItemsToReceive: {tradeOffer.ItemsToGive.Count}");
 
