@@ -527,6 +527,17 @@ namespace ArchiSteamFarm.Json {
 					}
 				}
 
+                ASF.ArchiLogger.LogGenericInfo("IsFairTypesExchange():");
+                ASF.ArchiLogger.LogGenericInfo("  itemsToGivePerGame:");
+
+                foreach (KeyValuePair<uint, Dictionary<Asset.EType, uint>> kvp in itemsToGivePerGame) {
+                    ASF.ArchiLogger.LogGenericInfo($"    AppID:\t {kvp.Key}");
+
+                    foreach (KeyValuePair<Asset.EType, uint> item in kvp.Value) {
+                        ASF.ArchiLogger.LogGenericInfo($"      {item.Key}:\t {item.Value}");
+                    }
+                }
+
 				Dictionary<uint, Dictionary<Asset.EType, uint>> itemsToReceivePerGame = new Dictionary<uint, Dictionary<Asset.EType, uint>>();
 				foreach (Asset item in ItemsToReceive) {
 					if (!itemsToReceivePerGame.TryGetValue(item.RealAppID, out Dictionary<Asset.EType, uint> itemsPerType)) {
@@ -538,8 +549,18 @@ namespace ArchiSteamFarm.Json {
 					}
 				}
 
-				// Ensure that amount of items to give is at least amount of items to receive (per game and per type)
-				foreach (KeyValuePair<uint, Dictionary<Asset.EType, uint>> itemsPerGame in itemsToGivePerGame) {
+                ASF.ArchiLogger.LogGenericInfo("  itemsToReceivePerGame:");
+
+                foreach (KeyValuePair<uint, Dictionary<Asset.EType, uint>> kvp in itemsToReceivePerGame) {
+                    ASF.ArchiLogger.LogGenericInfo($"    AppID:\t {kvp.Key}");
+
+                    foreach (KeyValuePair<Asset.EType, uint> item in kvp.Value) {
+                        ASF.ArchiLogger.LogGenericInfo($"      {item.Key}:\t {item.Value}");
+                    }
+                }
+
+                // Ensure that amount of items to give is at least amount of items to receive (per game and per type)
+                foreach (KeyValuePair<uint, Dictionary<Asset.EType, uint>> itemsPerGame in itemsToGivePerGame) {
 					if (!itemsToReceivePerGame.TryGetValue(itemsPerGame.Key, out Dictionary<Asset.EType, uint> otherItemsPerType)) {
 						return false;
 					}
