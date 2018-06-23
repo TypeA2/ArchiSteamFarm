@@ -183,11 +183,7 @@ namespace ArchiSteamFarm {
             ASF.ArchiLogger.LogGenericInfo($"  IsFairTypesEx:\t {tradeOffer.IsFairTypesExchange()}");
             ASF.ArchiLogger.LogGenericInfo($"  ShouldAcceptTrade:\t {(await ShouldAcceptTrade(tradeOffer).ConfigureAwait(false)).Result}")
 
-<<<<<<< HEAD
             ASF.ArchiLogger.LogGenericInfo($"  ItemsToGive:\t {tradeOffer.ItemsToGive.Count}");
-
-=======
->>>>>>> 795bc74b104dacad3df70f9b4248b3af9d9ea5ee
             foreach (Steam.Asset asset in tradeOffer.ItemsToGive) {
                 ASF.ArchiLogger.LogGenericInfo($"    AssetID:\t {asset.AssetID}");
                 ASF.ArchiLogger.LogGenericInfo($"      Amount:\t {asset.Amount}");
